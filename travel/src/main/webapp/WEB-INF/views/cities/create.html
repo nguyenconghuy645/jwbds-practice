@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Thành Phố</title>
+    <link rel="stylesheet" href="/resource/css/bootstrap.min.css" th:href="@{/resource/css/bootstrap.min.css}">
+</head>
+<body>
+<main role="main" class="container p-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Thêm Thành Phố</h1>
+                </div>
+                <div class="card-body">
+                    <div th:if="${#fields.hasErrors('${city.*}')}" class="alert alert-danger">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('${city.*}')}" th:text="${err}">Input is incorrect
+                            </li>
+                        </ul>
+                    </div>
+                    <form th:action="@{/cities/create}" th:object="${city}" method="post">
+                        <input type="hidden" th:field="*{id}">
+                        <div class="row form-group">
+                            <label class="col-form-label col-md-2">Tên</label>
+                            <div class="col-md-10">
+                                <input type="text" th:field="*{name}" class="form-control"
+                                       th:classappend="${#fields.hasErrors('name')}? 'is-invalid'">
+                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></p>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-form-label col-md-2">Quốc Qia</label>
+                            <div class="col-md-10">
+                                <select th:field="*{country}" class="form-control" required>
+                                    <option value="">Select</option>
+                                    <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name}"></option>
+                                </select>
+                                <p th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="invalid-feedback"></p>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-form-label col-md-2">Diện Tích</label>
+                            <div class="col-md-10">
+                                <input type="number" th:field="*{acreage}" class="form-control"
+                                       th:classappend="${#fields.hasErrors('acreage')}? 'is-invalid'">
+                                <p th:if="${#fields.hasErrors('acreage')}" th:errors="*{acreage}" class="invalid-feedback"></p>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-form-label col-md-2">Dân Số</label>
+                            <div class="col-md-10">
+                                <input type="number" th:field="*{population}" class="form-control"
+                                       th:classappend="${#fields.hasErrors('population')}? 'is-invalid'">
+                                <p th:if="${#fields.hasErrors('population')}" th:errors="*{population}" class="invalid-feedback"></p>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-form-label col-md-2">GDP</label>
+                            <div class="col-md-10">
+                                <input type="number" th:field="*{gdp}" class="form-control"
+                                       th:classappend="${#fields.hasErrors('gdp')}? 'is-invalid'">
+                                <p th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}" class="invalid-feedback"></p>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-form-label col-md-2">Giới Thiệu</label>
+                            <div class="col-md-10">
+                                <textarea rows="5" th:field="*{description}" class="form-control"
+                                          th:classappend="${#fields.hasErrors('description')}? 'is-invalid'"></textarea>
+                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="invalid-feedback"></p>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-outline-dark mr-1">Nhập Thành Phố</button>
+                            <a th:href="@{/cities}" class="btn btn-outline-dark">Thoát</a>
+                        </div>
+                    </form>
+                </div><!-- /.card-body -->
+            </div><!-- /.card -->
+        </div><!-- /.col-md-9 -->
+    </div><!-- /.row -->
+</main>
+</body>
+</html>

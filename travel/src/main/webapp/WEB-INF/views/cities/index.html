@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Thành Phố</title>
+    <link rel="stylesheet" href="/resource/css/bootstrap.min.css" th:href="@{/resource/css/bootstrap.min.css}">
+</head>
+<body>
+<main role="main" class="container p-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header clearfix">
+                    <h1 class="float-left">Danh Sách Thành Phố</h1>
+                    <a th:href="@{/cities/create}" class="float-right btn btn-outline-dark">Thêm Thành Phố</a>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="alert alert-success" th:if="${message}" th:utext="${message}"></div>
+
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <th>#</th>
+                        <th>Thành Phố</th>
+                        <th>Quốc Qia</th>
+                        <th>Hành Động</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="city : ${cities}">
+                            <td th:text="${city.id}"></td>
+                            <td>
+                                <a th:href="@{/cities/{id}(id=${city.id})}" th:text="${city.name}"></a>
+                            </td>
+                            <td th:text="${city.country.name}"></td>
+                            <td>
+                                <a th:href="@{/cities/edit/{id}(id=${city.id})}" class="btn btn-outline-dark mr-1">Chỉnh Sửa</a>
+                                <a th:href="@{/cities/delete/{id}(id=${city.id})}" class="btn btn-outline-dark">Xóa</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- /.card -->
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+</main><!-- /.main -->
+</body>
+</html>

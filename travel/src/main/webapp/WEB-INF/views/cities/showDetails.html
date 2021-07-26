@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${city.name}">Thông Tin Chi Tiết Một Thành Phố</title>
+    <link rel="stylesheet" href="/resource/css/bootstrap.min.css" th:href="@{/resource/css/bootstrap.min.css}">
+</head>
+<body>
+<main role="main" class="container p-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header clearfix">
+                    <h1 class="float-left" th:text="${city.name}"></h1>
+                    <a th:href="@{/cities}" class="float-right btn btn-outline-dark">Xem Danh Sách Thành Phố</a>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-unstyled">
+                        <li>Tên: <span th:text="${city.name}"></span></li>
+                        <li>Quốc Qia: <span th:text="${city.country.name}"></span></li>
+                        <li>Diện Tích: <span th:text="${city.acreage}"></span></li>
+                        <li>Dân Số: <span th:text="${city.population}"></span></li>
+                        <li>GDP: <span th:text="${city.gdp}"></span></li>
+                        <li>
+                            Giới Thiệu:
+                            <p th:utext="${city.description}"></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix float-right">
+                        <a th:href="@{/cities/edit/{id}(id=${city.id})}" class="btn btn-outline-dark mr-1">Chỉnh sửa</a>
+                        <a th:href="@{/cities/delete/{id}(id=${city.id})}" class="btn btn-outline-dark">Xóa</a>
+                    </div>
+                </div><!-- /.card-body -->
+            </div><!-- /.card -->
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+</main><!-- /.main -->
+</body>
+</html>

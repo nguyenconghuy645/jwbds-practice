@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Xóa Thành Phố ' + ${city.name}">Xóa Thành Phố</title>
+    <link rel="stylesheet" href="/resource/css/bootstrap.min.css" th:href="@{/resource/css/bootstrap.min.css}">
+</head>
+<body>
+<main role="main" class="container p-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header clearfix">
+                    <h1 th:text="'Xóa Thành Phố ' + ${city.name}"></h1>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/cities/delete}" th:object="${city}" method="post">
+                        <input type="hidden" th:field="*{id}">
+                        <p class="mb-2">Bạn Chắc Chắn Muốn Xóa Thành Phố <span th:text="${city.name}"></span>?</p>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-outline-dark mr-1">Xóa</button>
+                            <a th:href="@{/cities}" class="btn btn-outline-dark">Thoát</a>
+                        </div>
+                    </form>
+                </div><!-- /.card-body -->
+            </div><!-- /.card -->
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+</main><!-- /.main -->
+</body>
+</html>
